@@ -1,0 +1,31 @@
+{
+  "name": "@skewliq/rails",
+  "version": "1.0.0",
+  "description": "Public TypeScript client for Skew Liquidity swap rails. Unsigned calldata. You sign.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://skewliq.com/rails",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skewliq/rails.git"
+  },
+  "bugs": {
+    "url": "https://github.com/skewliq/rails/issues"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src",
+    "addresses.json",
+    "openapi.yaml",
+    "LICENSE"
+  ],
+  "keywords": [
+    "skew",
+    "robinhood-chain",
+    "rwa",
+    "agent",
+    "swap"
+  ]
+}
