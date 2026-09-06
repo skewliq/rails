@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: Skew v1
+  version: 1.0.0
+  description: Non-custodial swap rails and public distributor reads. Agents sign their own transactions.
+servers:
+  - url: https://skewliq.com/api/v1
+paths:
+  /swap/build:
+    post:
+      summary: Build unsigned SkewRouter calldata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [tokenIn, tokenOut, amountIn, recipient]
+              properties:
+                tokenIn: { type: string }
+                tokenOut: { type: string }
+                fee: { type: integer, default: 3000 }
+                amountIn: { type: string, description: integer base units }
+                amountOutMinimum: { type: string }
+                recipient: { type: string }
+                path: { type: string }
+                via: { type: string, enum: [usdg] }
+  /epochs:
+    get:
+      summary: List distribution epochs
+  /epochs/{id}:
+    get:
+      summary: Epoch detail
+  /epochs/{id}/payouts:
+    get:
+      summary: Payouts for an epoch
+  /holders/{address}/payouts:
+    get:
+      summary: Payouts for a holder
+  /payouts/board:
+    get:
+      summary: Payout desk summary
+  /payouts/standings:
+    get:
+      summary: Paginated snapshot standings, last drop, or epoch list
+      parameters:
+        - name: view
+          in: query
+          schema: { type: string, enum: [snapshot, last, epochs] }
+        - name: q
+          in: query
+          schema: { type: string }
+        - name: cursor
+          in: query
+          schema: { type: string }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 25, maximum: 100 }
+  /partners:
+    get:
+      summary: Registered partners
+  /partners/{id}:
+    get:
+      summary: Partner receipts
